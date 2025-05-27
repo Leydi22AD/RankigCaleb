@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: default
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Leydi22AD/RCaleb.git
+          default-label: master
+          clone-on-start: true
+          #usamos user and password when repository is private en github
+          username: Leydi22AD
+          #password: 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
+          #use variable entorno
+          #password: ${GIT_TOKEN}
+server:
+  port: 7777
+
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      #static no docker
+      defaultZone: http://localhost:8761/eureka/
